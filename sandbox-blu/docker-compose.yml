@@ -1,0 +1,15 @@
+# Set the Version of Docker Compose to use
+version: '3.9'
+
+# The Containers that compose the project
+services:
+    db:
+        image: postgres:14
+        restart: always
+        container_name: sandbox-blu
+        ports:
+            - '5433:5432'
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+            POSTGRES_DB: sandbox
