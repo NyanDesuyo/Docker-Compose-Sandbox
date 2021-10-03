@@ -1,0 +1,19 @@
+# Set the Version of Docker Compose to use
+version: "3.9"
+
+# The Containers that compose the project
+services:
+  cache:
+    image: redis:6
+    command: redis-server
+    restart: always
+    container_name: sandbox-red
+    ports:
+      - "6480:6479"
+    volumes:
+      - redis-data: /data
+      - redis-conf: /usr/local/etc/redis/redis.conf
+
+volumes:
+  redis-data:
+  redis-conf:
