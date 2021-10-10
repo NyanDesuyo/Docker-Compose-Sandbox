@@ -6,11 +6,10 @@
 
 MongoDB
 
-| name                  | directory                    | usage                      | status |
-| --------------------- | ---------------------------- | -------------------------- | ------ |
-| mongodb standalone    | ./sandbox-green/standalone   | mongodb standalone mode    | NA     |
-| mongodb replica solo  | ./sandbox-green/replica-solo | mongodb replica solo mode  | Failed |
-| mongodb replica multi | ./sandbox-green/replica-trio | mongodb replica multi mode | Failed |
+| name               | directory                    | usage                      | status     |
+| ------------------ | ---------------------------- | -------------------------- | ---------- |
+| mongodb standalone | ./sandbox-green/standalone   | mongodb standalone mode    | NA         |
+| mongodb replica    | ./sandbox-green/replica-trio | mongodb replica multi mode | Success(1) |
 
 Postgresql
 
@@ -23,3 +22,6 @@ Redis
 | name            | directory     | usage | status     |
 | --------------- | ------------- | ----- | ---------- |
 | redis version 6 | ./sandbox-red | redis | Incomplete |
+
+Note:
+(1) Something need to test
