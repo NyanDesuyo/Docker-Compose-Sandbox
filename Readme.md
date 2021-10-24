@@ -6,22 +6,25 @@
 
 MongoDB
 
-| name               | directory                    | usage                      | status     |
-| ------------------ | ---------------------------- | -------------------------- | ---------- |
-| mongodb standalone | ./sandbox-green/standalone   | mongodb standalone mode    | NA         |
-| mongodb replica    | ./sandbox-green/replica-trio | mongodb replica multi mode | Success(1) |
+| name               | directory              | version | usage                      | status  |
+| ------------------ | ---------------------- | ------- | -------------------------- | ------- |
+| mongodb standalone | ./mongodb/standalone   | 5-focal | mongodb standalone mode    | NA      |
+| mongodb replica    | ./mongodb/replica-trio | 5-focal | mongodb replica multi mode | Success |
 
 Postgresql
 
-| name                 | directory     | usage    | status  |
-| -------------------- | ------------- | -------- | ------- |
-| postgress version 14 | ./sandbox-blu | Postgres | Success |
+| name      | directory  | version | usage    | status  |
+| --------- | ---------- | ------- | -------- | ------- |
+| postgress | ./postgres | 14      | postgres | Success |
 
 Redis
 
-| name            | directory     | usage | status     |
-| --------------- | ------------- | ----- | ---------- |
-| redis version 6 | ./sandbox-red | redis | Incomplete |
+| name  | directory     | version | usage | status     |
+| ----- | ------------- | ------- | ----- | ---------- |
+| redis | ./sandbox-red | 6       | redis | Incomplete |
 
-Note:
-(1) Something need to test
+Cassandra
+
+| name     | directory  | version | usage                 | status     |
+| -------- | ---------- | ------- | --------------------- | ---------- |
+| casandra | ./casandra | 5-focal | cassandra single node | Incomplete |
