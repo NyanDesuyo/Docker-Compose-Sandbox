@@ -9,6 +9,8 @@ services:
     image: mongo:5-focal
     ports:
       - "27001:27017"
+    expose:
+      - 27001
     restart: always
     entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "replica"]
   mongo2:
@@ -17,6 +19,8 @@ services:
     image: mongo:5-focal
     ports:
       - "27002:27017"
+    expose:
+      - 27002
     restart: always
     entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "replica"]
   mongo3:
@@ -25,10 +29,16 @@ services:
     image: mongo:5-focal
     ports:
       - "27003:27017"
+    expose:
+      - 27003
     restart: always
     entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "replica"]
   mongosetup:
     image: mongo:5-focal
+    links:
+      - mongo1:mongo1
+      - mongo2:mongo2
+      - mongo3:mongo3
     depends_on:
       - mongo1
       - mongo2

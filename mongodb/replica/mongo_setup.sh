@@ -6,22 +6,27 @@ echo mongosh_setup.sh time now: `date +"%T" `
 mongosh --host mongo1:27017 <<EOF
   var cfg = {
     "_id": "replica",
+    "version":1,
     "members": [
       {
         "_id": 0,
         "host": "mongo1:27017",
+        "priority": 2
       },
       {
         "_id": 1,
         "host": "mongo2:27017",
+        "priority": 0
       },
       {
         "_id": 2,
         "host": "mongo3:27017",
+        "priority": 0
       }
     ]
   };
-  rs.initiate(cfg);
-  rs.conf();
+  rs.initiate(cfg,{force:true});
+  rs.reconfig(cfg,{force:true});
+  db.getMongo().setReadPref('nearest');
   rs.status();
 EOF
