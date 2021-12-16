@@ -1,0 +1,15 @@
+# Set the Version of Docker Compose to use
+version: "3.9"
+
+services:
+  reverse-proxy:
+    image: traefik:2.5.4
+    command: --api.insecure-trye --providers.docker
+    ports:
+      # HTTP PORT
+      - "80:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # So that Traefik can listen to Docker Events
+      - /var/run/docker.sock:/var/run/docker.sock
