@@ -13,5 +13,6 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: sandbox
-    volumes:
-      - "./postgres-data:/var/lib/postgresql/data"
+    # Uncomment for Persistend data
+    # volumes:
+    #   - "./postgres-data:/var/lib/postgresql/data"
