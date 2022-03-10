@@ -3,17 +3,10 @@ version: "3.9"
 
 # The Containers that compose the project
 services:
-  cache:
+  redis:
     image: redis:6
-    command: redis-server
+    command: redis-server --requirepass root
     restart: always
-    container_name: sandbox-red
+    container_name: sandbox-redis
     ports:
       - "6480:6479"
-    volumes:
-      - redis-data: /data
-      - redis-conf: /usr/local/etc/redis/redis.conf
-
-volumes:
-  redis-data:
-  redis-conf:
