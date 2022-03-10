@@ -1,29 +1,45 @@
 # Docker Compose Sandbox
 
-## Collections
+- [Docker Compose Sandbox](#docker-compose-sandbox)
+  - [Database](#database)
+    - [MongoDB](#mongodb)
+    - [Postgresql](#postgresql)
+    - [MySQL](#mysql)
+    - [Redis](#redis)
+    - [Cassandra](#cassandra)
 
 ---
 
-MongoDB
+## Database
 
-| name               | directory              | version | usage                      | status  |
-| ------------------ | ---------------------- | ------- | -------------------------- | ------- |
-| mongodb standalone | ./mongodb/standalone   | 5-focal | mongodb standalone mode    | NA      |
-| mongodb replica    | ./mongodb/replica-trio | 5-focal | mongodb replica multi mode | Success |
+---
 
-Postgresql
+### MongoDB
+
+| name               | directory            | version | usage              | status     |
+| ------------------ | -------------------- | ------- | ------------------ | ---------- |
+| mongodb standalone | ./mongodb/standalone | 5-focal | mongodb standalone | Incomplete |
+| mongodb replica    | ./mongodb/replica    | 5-focal | mongodb replica    | Success\*  |
+
+### Postgresql
 
 | name      | directory  | version | usage    | status  |
 | --------- | ---------- | ------- | -------- | ------- |
 | postgress | ./postgres | 14      | postgres | Success |
 
-Redis
+### MySQL
 
-| name  | directory     | version | usage | status     |
-| ----- | ------------- | ------- | ----- | ---------- |
-| redis | ./sandbox-red | 6       | redis | Incomplete |
+| name  | directory | version | usage | status  |
+| ----- | --------- | ------- | ----- | ------- |
+| mysql | ./mysql   | 8.0.27  | mysql | Success |
 
-Cassandra
+### Redis
+
+| name  | directory | version | usage | status    |
+| ----- | --------- | ------- | ----- | --------- |
+| redis | ./redis   | 6       | redis | Success\* |
+
+### Cassandra
 
 | name     | directory  | version | usage                 | status     |
 | -------- | ---------- | ------- | --------------------- | ---------- |
