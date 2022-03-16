@@ -12,7 +12,13 @@ services:
     expose:
       - 27001
     restart: always
-    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "replica"]
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        "--bind_ip_all",
+        "--replSet",
+        "replica"
+      ]
   mongo2:
     hostname: mongo2
     container_name: localmongo2
@@ -22,7 +28,13 @@ services:
     expose:
       - 27002
     restart: always
-    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "replica"]
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        "--bind_ip_all",
+        "--replSet",
+        "replica"
+      ]
   mongo3:
     hostname: mongo3
     container_name: localmongo3
@@ -32,7 +44,13 @@ services:
     expose:
       - 27003
     restart: always
-    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "replica"]
+    entrypoint:
+      [
+        "/usr/bin/mongod",
+        "--bind_ip_all",
+        "--replSet",
+        "replica"
+      ]
   mongosetup:
     image: mongo:5-focal
     links:
@@ -46,4 +64,4 @@ services:
     volumes:
       - .:/scripts
     restart: "no"
-    entrypoint: ["bash", "/scripts/mongo_setup.sh"]
+    entrypoint: [ "bash", "/scripts/mongo_setup.sh" ]
