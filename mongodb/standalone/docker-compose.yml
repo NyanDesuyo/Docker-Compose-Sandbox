@@ -1,0 +1,10 @@
+# Set the Version of Docker Compose to use
+version: "3.9"
+
+# The Containers that compose the project
+services:
+  db:
+    image: mongo:5-focal
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=AzureDiamond
+      - MONGO_INITDB_ROOT_PASSWORD=hunter2
