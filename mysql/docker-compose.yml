@@ -3,11 +3,15 @@ version: "3.9"
 
 # The Containers that compose the project
 services:
-  db:
-    image: mysql:8.0.27
-    restart: always
+  database:
     container_name: sandbox-mysql
+    image: mysql:8.4.0
+    restart: always
     ports:
       - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./data:/var/lib/mysql
+volumes:
+  mysql-volume:
