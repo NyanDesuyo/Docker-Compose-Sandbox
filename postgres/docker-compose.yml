@@ -1,9 +1,6 @@
-# Set the Version of Docker Compose to use
-version: "3.9"
-
 # The Containers that compose the project
 services:
-  db:
+  postgres-db:
     image: postgres:16.3
     restart: always
     container_name: sandbox-postgres
