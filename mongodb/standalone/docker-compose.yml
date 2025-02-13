@@ -1,10 +1,7 @@
-# Set the Version of Docker Compose to use
-version: "3.9"
-
 # The Containers that compose the project
 services:
   db:
-    image: mongo:5-focal
+    image: mongo:8
     restart: always
     container_name: sandbox-mongo
     ports:
