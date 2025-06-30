@@ -2,7 +2,7 @@
 services:
   database:
     container_name: sandbox-mysql
-    image: mysql:9.0.1
+    image: mysql:9.3.0
     restart: always
     ports:
       - "3307:3306"
