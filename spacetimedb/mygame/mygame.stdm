@@ -1,0 +1,6 @@
+[game]
+name = "mygame"
+
+[entity.Player]
+fields.name = "String"
+fields.score = "Int"
