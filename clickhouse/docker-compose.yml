@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server
+    container_name: clickhouse
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+    ports:
+      - "8123:8123" # HTTP
+      - "9000:9000" # TCP
+      - "9009:9009" # TCP (for clickhouse-client)
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    # Tambahkan konfigurasi environment sesuai kebutuhan Anda
+    # Contoh:
+    # environment:
+    #   - CLICKHOUSE_USER=user
+    #   - CLICKHOUSE_PASSWORD=password
+
+volumes:
+  clickhouse-data:
