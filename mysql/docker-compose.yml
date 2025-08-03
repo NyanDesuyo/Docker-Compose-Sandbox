@@ -8,8 +8,24 @@ services:
       - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-}
+      MYSQL_USER: ${MYSQL_USER:-}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-}
     volumes:
+      # Main data directory for persistence
       - ./data:/var/lib/mysql
+      # Custom MySQL configuration
       - ./my.cnf:/etc/mysql/my.cnf
+      # SQL dump files for automatic initialization (only runs on empty data dir)
+      - ./sql-dumps:/docker-entrypoint-initdb.d:ro
+      # Backup and restore scripts
+      - ./scripts:/scripts:ro
+    networks:
+      - mysql-network
+
+networks:
+  mysql-network:
+    driver: bridge
+
 volumes:
   mysql-volume:
