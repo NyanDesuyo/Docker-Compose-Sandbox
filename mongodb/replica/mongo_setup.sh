@@ -1,12 +1,10 @@
 #!/bin/bash
-echo "sleeping for 10 seconds"
 sleep 10
 
-echo mongosh_setup.sh time now: `date +"%T" `
 mongosh --host mongo1:27017 <<EOF
   var cfg = {
-    "_id": "replica",
-    "version":1,
+    "_id": "myReplicaSet",
+    "version": 1,
     "members": [
       {
         "_id": 0,
@@ -25,8 +23,5 @@ mongosh --host mongo1:27017 <<EOF
       }
     ]
   };
-  rs.initiate(cfg,{force:true});
-  rs.reconfig(cfg,{force:true});
-  db.getMongo().setReadPref('nearest');
-  rs.status();
+  rs.initiate(cfg);
 EOF

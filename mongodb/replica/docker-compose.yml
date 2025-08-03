@@ -4,59 +4,28 @@ version: "3.9"
 # The Containers that compose the project
 services:
   mongo1:
+    image: mongo:6
     hostname: mongo1
-    container_name: localmongo1
-    image: mongo:5-focal
+    container_name: mongo1
     ports:
-      - "27001:27017"
-    expose:
-      - 27001
-    restart: always
-    entrypoint:
-      [
-        "/usr/bin/mongod",
-        "--bind_ip_all",
-        "--replSet",
-        "replica"
-      ]
+      - 27017:27017
+    entrypoint: [ "mongod", "--replSet", "myReplicaSet", "--bind_ip", "localhost,mongo1" ]
   mongo2:
+    image: mongo:6
     hostname: mongo2
-    container_name: localmongo2
-    image: mongo:5-focal
+    container_name: mongo2
     ports:
-      - "27002:27017"
-    expose:
-      - 27002
-    restart: always
-    entrypoint:
-      [
-        "/usr/bin/mongod",
-        "--bind_ip_all",
-        "--replSet",
-        "replica"
-      ]
+      - 27018:27017
+    entrypoint: [ "mongod", "--replSet", "myReplicaSet", "--bind_ip", "localhost,mongo2" ]
   mongo3:
+    image: mongo:6
     hostname: mongo3
-    container_name: localmongo3
-    image: mongo:5-focal
+    container_name: mongo3
     ports:
-      - "27003:27017"
-    expose:
-      - 27003
-    restart: always
-    entrypoint:
-      [
-        "/usr/bin/mongod",
-        "--bind_ip_all",
-        "--replSet",
-        "replica"
-      ]
+      - 27019:27017
+    entrypoint: [ "mongod", "--replSet", "myReplicaSet", "--bind_ip", "localhost,mongo3" ]
   mongosetup:
-    image: mongo:5-focal
-    links:
-      - mongo1:mongo1
-      - mongo2:mongo2
-      - mongo3:mongo3
+    image: mongo:6
     depends_on:
       - mongo1
       - mongo2
