@@ -1,7 +1,3 @@
-# Set the Version of Docker Compose to use
-version: "3.9"
-
-# The Containers that compose the project
 services:
   cassandra:
     container_name: cassandra
