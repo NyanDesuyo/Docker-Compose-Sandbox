@@ -1,31 +1,37 @@
-# Set the Version of Docker Compose to use
-version: "3.9"
-
-# The Containers that compose the project
 services:
   mongo1:
-    image: mongo:6
+    image: mongo:8.0
     hostname: mongo1
     container_name: mongo1
     ports:
-      - 27017:27017
-    entrypoint: [ "mongod", "--replSet", "myReplicaSet", "--bind_ip", "localhost,mongo1" ]
+      - "27017:27017"
+    entrypoint: [ "mongod", "--replSet", "myReplicaSet", "--bind_ip", "mongo1,localhost" ]
+    networks:
+      - mongo-replica-net
+
   mongo2:
-    image: mongo:6
+    image: mongo:8.0
     hostname: mongo2
     container_name: mongo2
     ports:
-      - 27018:27017
-    entrypoint: [ "mongod", "--replSet", "myReplicaSet", "--bind_ip", "localhost,mongo2" ]
+      - "27018:27017"
+    entrypoint: [ "mongod", "--replSet", "myReplicaSet", "--bind_ip", "mongo2,localhost" ]
+    networks:
+      - mongo-replica-net
+
   mongo3:
-    image: mongo:6
+    image: mongo:8.0
     hostname: mongo3
     container_name: mongo3
     ports:
-      - 27019:27017
-    entrypoint: [ "mongod", "--replSet", "myReplicaSet", "--bind_ip", "localhost,mongo3" ]
+      - "27019:27017"
+    entrypoint: [ "mongod", "--replSet", "myReplicaSet", "--bind_ip", "mongo3,localhost" ]
+    networks:
+      - mongo-replica-net
+
   mongosetup:
-    image: mongo:6
+    image: mongo:8.0
+    container_name: mongosetup
     depends_on:
       - mongo1
       - mongo2
@@ -33,4 +39,10 @@ services:
     volumes:
       - .:/scripts
     restart: "no"
+    networks:
+      - mongo-replica-net
     entrypoint: [ "bash", "/scripts/mongo_setup.sh" ]
+
+networks:
+  mongo-replica-net:
+    driver: bridge
