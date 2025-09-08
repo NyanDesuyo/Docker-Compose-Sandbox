@@ -1,7 +1,7 @@
 # The Containers that compose the project
 services:
   postgres-db:
-    image: postgres:16.3
+    image: postgres:17.6
     restart: always
     container_name: sandbox-postgres
     ports:
