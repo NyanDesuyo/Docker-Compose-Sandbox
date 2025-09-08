@@ -1,9 +1,0 @@
-services:
-  surrealdb:
-    image: surrealdb/surrealdb:latest
-    container_name: surrealdb_instance
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./data:/data
-    command: start --log debug --user root --pass root rocksdb://data/my_database.db
