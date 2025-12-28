@@ -1,11 +1,11 @@
 # The Containers that compose the project
 services:
   postgres-db:
-    image: postgres:17.6
+    image: postgres:17.7
     restart: always
     container_name: sandbox-postgres
     ports:
-      - "5434:5432"
+      - "7010:5432"
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
