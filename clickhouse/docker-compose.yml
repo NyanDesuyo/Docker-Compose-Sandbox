@@ -3,21 +3,24 @@ services:
   clickhouse:
     image: clickhouse/clickhouse-server
     container_name: clickhouse
-    volumes:
-      - clickhouse-data:/var/lib/clickhouse
+    hostname: clickhouse-server
     ports:
-      - "8123:8123" # HTTP
-      - "9000:9000" # TCP
-      - "9009:9009" # TCP (for clickhouse-client)
+      - "7041:8123" # Web Interface
+      - "7040:9000" # TCP
+    volumes:
+      - ./ch_data:/var/lib/clickhouse
+      - ./ch_logs:/var/log/clickhouse-server
+    environment:
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=
+      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
     ulimits:
       nofile:
         soft: 262144
         hard: 262144
-    # Tambahkan konfigurasi environment sesuai kebutuhan Anda
-    # Contoh:
-    # environment:
-    #   - CLICKHOUSE_USER=user
-    #   - CLICKHOUSE_PASSWORD=password
-
+    cap_add:
+      - SYS_NICE
+      - NET_ADMIN
+      - IPC_LOCK
 volumes:
   clickhouse-data:
