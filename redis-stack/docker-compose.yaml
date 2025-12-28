@@ -1,15 +1,11 @@
 services:
   redis-stack:
     image: redis/redis-stack:latest
-    
     ports:
-      - "6381:6379"
-      - "8001:8001"
-      
+      - "7030:6379"
+      - "7031:8001"
     volumes:
       - redis_data:/data
-      
-# Define the named volume
 volumes:
   redis_data:
 
