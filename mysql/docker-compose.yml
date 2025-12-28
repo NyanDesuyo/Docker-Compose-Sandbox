@@ -2,26 +2,19 @@
 services:
   database:
     container_name: sandbox-mysql
-    image: mysql:9.3.0
+    image: mysql:9.5.0
     restart: always
     ports:
       - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-}
-      MYSQL_USER: ${MYSQL_USER:-}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-}
     volumes:
-      # Main data directory for persistence
       - ./data:/var/lib/mysql
-      # Custom MySQL configuration
       - ./my.cnf:/etc/mysql/my.cnf
     networks:
       - mysql-network
-
 networks:
   mysql-network:
     driver: bridge
-
 volumes:
   mysql-volume:
