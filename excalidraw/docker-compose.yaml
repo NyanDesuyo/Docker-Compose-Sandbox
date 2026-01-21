@@ -1,0 +1,7 @@
+services:
+  excalidraw:
+    image: excalidraw/excalidraw:latest
+    container_name: excalidraw
+    ports:
+      - "9003:80" # Opens Excalidraw at http://localhost:3000
+    restart: unless-stopped
