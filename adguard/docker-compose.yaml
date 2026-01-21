@@ -1,0 +1,26 @@
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    restart: unless-stopped
+    # Use "host" network if you want to use AdGuard as a DHCP server
+    # network_mode: host
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      # - "67:67/udp" # DHCP
+      # - "68:68/udp" # DHCP
+      - "9000:80/tcp" # Web UI / HTTP
+      - "443:443/tcp" # HTTPS / DNS-over-HTTPS
+      - "443:443/udp" # DNS-over-QUIC
+      - "853:853/tcp" # DNS-over-TLS
+      - "3000:3000/tcp" # Initial Setup
+      - "853:853/udp" # DNS-over-QUIC
+      - "784:784/udp" # DNS-over-QUIC
+      - "8853:8853/udp" # DNS-over-QUIC
+      - "5443:5443/tcp" # DNSCrypt
+      - "5443:5443/udp" # DNSCrypt
+    volumes:
+      # Update these paths to valid locations on your host machine
+      - ./confdir:/opt/adguardhome/conf
+      - ./workdir:/opt/adguardhome/work
