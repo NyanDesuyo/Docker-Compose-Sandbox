@@ -1,0 +1,33 @@
+services:
+  mailserver:
+    image: ghcr.io/docker-mailserver/docker-mailserver:latest
+    container_name: mailserver
+    # Use your custom domain here
+    hostname: mail
+    domainname: nyanstudio.home
+    ports:
+      - "25:25"     # SMTP
+      - "143:143"   # IMAP
+      - "587:587"   # Submission
+      - "993:993"   # IMAPS
+    volumes:
+      - ./mail-data:/var/mail
+      - ./mail-state:/var/mail-state
+      - ./mail-logs:/var/log/mail
+      - ./config:/tmp/docker-mailserver
+    environment:
+      - ENABLE_SPAMASSASSIN=0
+      - ENABLE_CLAMAV=0 # Turn these off for "Simple" and low RAM usage
+      - ENABLE_FAIL2BAN=1
+      - SSL_TYPE= # Since we are using .home
+      - POSTMASTER_ADDRESS=me@nyanstudio.home
+    restart: always
+  roundcube:
+    image: roundcube/roundcubemail:latest
+    container_name: roundcube
+    restart: always
+    environment:
+      - ROUNDCUBEMAIL_DEFAULT_HOST=mailserver
+      - ROUNDCUBEMAIL_SMTP_SERVER=mailserver
+    ports:
+      - "8080:80"
