@@ -13,8 +13,11 @@ services:
       - ./my.cnf:/etc/mysql/my.cnf
     networks:
       - mysql-network
+      - network_db
 networks:
   mysql-network:
     driver: bridge
+  network_db:
+    external: true
 volumes:
   mysql-volume:

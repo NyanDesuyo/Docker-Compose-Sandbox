@@ -1,18 +1,19 @@
-version: "3.9"
 services:
   clickhouse:
     image: clickhouse/clickhouse-server
-    container_name: clickhouse
-    hostname: clickhouse-server
+    restart: always
+    container_name: sandbox-clickhouse
     ports:
       - "7041:8123" # Web Interface
       - "7040:9000" # TCP
+    networks:
+      - network_db
     volumes:
       - ./ch_data:/var/lib/clickhouse
       - ./ch_logs:/var/log/clickhouse-server
     environment:
       - CLICKHOUSE_USER=default
-      - CLICKHOUSE_PASSWORD=
+      - CLICKHOUSE_PASSWORD=root
       - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
     ulimits:
       nofile:
@@ -22,5 +23,6 @@ services:
       - SYS_NICE
       - NET_ADMIN
       - IPC_LOCK
-volumes:
-  clickhouse-data:
+networks:
+  network_db:
+    external: true

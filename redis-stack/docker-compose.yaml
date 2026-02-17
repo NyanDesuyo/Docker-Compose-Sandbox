@@ -1,11 +1,17 @@
 services:
   redis-stack:
+    container_name: sandbox-redis-stack
     image: redis/redis-stack:latest
+    restart: always  # Added: Ensures the container restarts if it crashes
     ports:
       - "7030:6379"
       - "7031:8001"
     volumes:
       - redis_data:/data
+    networks:
+      - network_db
+networks:
+  network_db:
+    external: true
 volumes:
   redis_data:
-
