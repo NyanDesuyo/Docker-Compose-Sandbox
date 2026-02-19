@@ -13,3 +13,8 @@ services:
     # Uncomment for Persistend data
     volumes:
       - "./data:/var/lib/postgresql/data"
+    networks:
+      - network_db
+networks:
+  network_db:
+    external: true
